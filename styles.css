@@ -1,0 +1,44 @@
+:root {
+  --gray: rgb(70, 70, 70);
+}
+
+body {
+  background: bisque;
+}
+
+svg {
+  background: white;
+  border: 1pt solid gray;
+  width: 75%;
+  margin: auto auto;
+}
+
+.goban_border {
+  stroke: black;
+  fill: none;
+  stroke-width: 1;
+}
+
+.goban_lines {
+  stroke: var(--gray);
+  fill: none;
+  stroke-width: 0.5;
+}
+
+.hoshi {
+  stroke: none;
+  fill: var(--gray);
+}
+
+.stone {
+  stroke: black;
+  stroke-width: 0.5;
+}
+
+.black.stone {
+  fill: black;
+}
+
+.white.stone {
+  fill: white;
+}

@@ -10,6 +10,9 @@ const new_kifu = function (id = "") {
   let premoves_W = [];
   let moves = [];
 
+  // 20x20 because stone coordinates are 1->19 and not 0->18
+  let goban = new Array(20 * 20).fill(0);
+
   const draw_goban = function () {
     // grid lines
     const h_lines = document.createElementNS(svgns, "path");
@@ -48,11 +51,14 @@ const new_kifu = function (id = "") {
   };
 
   const draw_stone = function (x, y, col, n = "") {
+    const occ = goban_occupied(x, y);
+    if (occ != n) return `${n} at ${occ}, `;
+
     const stone = document.createElementNS(svgns, "circle");
     stone.setAttribute("r", "4.5");
     stone.setAttribute("cx", x * 10);
     stone.setAttribute("cy", y * 10);
-    const c = col == 0 ? "black" : "white";
+    const c = col == "B" ? "black" : "white";
     stone.setAttribute("class", "stone " + c);
     svg.appendChild(stone);
 
@@ -64,29 +70,42 @@ const new_kifu = function (id = "") {
       text.setAttribute("class", "move_n " + c);
       svg.appendChild(text);
     }
+
+    return "";
   };
 
-  const draw_stones = function (list) {
-    list.map((stone, i) => draw_stone(stone.x, stone.y, i % 2, i + 1));
+  const draw_stones = function (start = 1, end = 300) {
+    // slice: only the moves start -> end are dealt with
+    // map: the function draws the stone; if the place was already occupied, a string like "82 at 41" is returned
+    // join: those strings are joined together
+    return moves
+      .slice(start - 1, end)
+      .map((stone, i) => draw_stone(stone.x, stone.y, stone.col, i + start))
+      .join("");
   };
 
-  return { draw_goban, draw_stone, draw_stones };
+  const add_moves = function (list) {
+    moves = list;
+    moves.map((s, i) => place_stone(s.x, s.y, i + 1));
+  };
+
+  // records the stone position in the goban array
+  // this is used to check whether a stone is placed in a previously occupied positions
+  const place_stone = function (x, y, n) {
+    if (goban[x + y * 19] == 0) goban[x + y * 19] = n;
+  };
+
+  const goban_occupied = function (x, y) {
+    return goban[x + y * 19];
+  };
+
+  return { add_moves, draw_goban, draw_stone, draw_stones };
 };
+
+const parser = sgf_parser(sgf);
+const game_moves = parser.get_moves().map(parser.convert_coordinates);
 
 const kifu1 = new_kifu("kifu");
 kifu1.draw_goban();
-
-/*
-kifu1.draw_stone(3, 4, "black");
-kifu1.draw_stone(5, 3, "white");
-kifu1.draw_stone(9, 3, "black");
-kifu1.draw_stone(4, 5, "white");
-kifu1.draw_stone(3, 5, "black");
-kifu1.draw_stone(4, 6, "white");
-kifu1.draw_stone(3, 7, "black");
-*/
-
-const parser = sgf_parser(sgf);
-const a = parser.get_moves().map(parser.convert_coordinates);
-
-kifu1.draw_stones(a);
+kifu1.add_moves(game_moves);
+console.log(kifu1.draw_stones());

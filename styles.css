@@ -42,3 +42,16 @@ svg {
 .white.stone {
   fill: white;
 }
+
+.move_n {
+  font-size: 4pt;
+  text-anchor: middle;
+}
+
+.move_n.black {
+  fill: white;
+}
+
+.move_n.white {
+  fill: black;
+}

@@ -1,16 +1,27 @@
+@font-face {
+  font-family: "open sans";
+  src: url("OpenSans-VariableFont_wdth,wght.woff2") format("woff2");
+}
+
 :root {
   --gray: rgb(70, 70, 70);
+  --textcolor: #303030;
+  font-family: "open sans", sans-serif;
 }
 
 body {
   background: bisque;
+  width: 75%;
+  margin: auto;
+}
+
+h1 {
+  font-weight: 800;
 }
 
 svg {
   background: white;
   border: 1pt solid gray;
-  width: 75%;
-  margin: auto auto;
 }
 
 .goban_border {
@@ -46,6 +57,8 @@ svg {
 .move_n {
   font-size: 4pt;
   text-anchor: middle;
+  font-stretch: 85%;
+  font-weight: 500;
 }
 
 .move_n.black {

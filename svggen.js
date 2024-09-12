@@ -106,6 +106,9 @@ const parser = sgf_parser(sgf);
 const game_moves = parser.get_moves().map(parser.convert_coordinates);
 
 const kifu1 = new_kifu("kifu");
+let moves_at = "";
 kifu1.draw_goban();
 kifu1.add_moves(game_moves);
-console.log(kifu1.draw_stones());
+moves_at = kifu1.draw_stones();
+
+document.querySelector("#moves_at").textContent = moves_at;

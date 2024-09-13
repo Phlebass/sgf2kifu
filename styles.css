@@ -12,6 +12,7 @@
 body {
   background: bisque;
   width: 75%;
+  max-width: 80ch;
   margin: auto;
 }
 
@@ -22,6 +23,16 @@ h1 {
 svg {
   background: white;
   border: 1pt solid gray;
+}
+
+#file_drop {
+  text-align: center;
+  padding: 3ch;
+  background: lightgrey;
+}
+
+#file_drop.active {
+  background: orange;
 }
 
 .goban_border {

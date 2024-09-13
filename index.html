@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <script src="pagescripts.js" defer></script>
     <script src="sgfparser.js" defer></script>
     <script src="svggen.js" defer></script>
     <link rel="stylesheet" href="styles.css" />
@@ -12,6 +13,11 @@
   </head>
   <body>
     <h1>Sgf2kifu</h1>
+
+    <div id="file_drop">Drag and drop your .sgf file here!</div>
+
+    <p>Or use the thing here</p>
+    <input id="file_input" type="file" onchange="file_changed()" />
 
     <p id="game_info"></p>
     <svg id="kifu" viewBox="0 0 200 200"></svg>

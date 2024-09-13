@@ -6,12 +6,15 @@ const svgns = "http://www.w3.org/2000/svg";
  */
 const new_kifu = function (id = "") {
   const svg = document.querySelector("#" + id);
-  let premoves_B = [];
-  let premoves_W = [];
+  let premoves = [];
   let moves = [];
 
   // 20x20 because stone coordinates are 1->19 and not 0->18
   let goban = new Array(20 * 20).fill(0);
+
+  const reset = function () {
+    svg.innerHTML = "";
+  };
 
   const draw_goban = function () {
     // grid lines
@@ -62,6 +65,7 @@ const new_kifu = function (id = "") {
     stone.setAttribute("class", "stone " + c);
     svg.appendChild(stone);
 
+    // possibly, the move number
     if (n != "") {
       const text = document.createElementNS(svgns, "text");
       text.textContent = n;
@@ -75,18 +79,27 @@ const new_kifu = function (id = "") {
   };
 
   const draw_stones = function (start = 1, end = 300) {
+    premoves.map((stone) => draw_stone(stone.x, stone.y, stone.col));
+
     // slice: only the moves start -> end are dealt with
     // map: the function draws the stone; if the place was already occupied, a string like "82 at 41" is returned
     // join: those strings are joined together
+    // slice: remove the last ", "
     return moves
       .slice(start - 1, end)
       .map((stone, i) => draw_stone(stone.x, stone.y, stone.col, i + start))
-      .join("");
+      .join("")
+      .slice(0, -2);
   };
 
   const add_moves = function (list) {
     moves = list;
     moves.map((s, i) => place_stone(s.x, s.y, i + 1));
+  };
+
+  const add_premoves = function (list) {
+    premoves = list;
+    moves.map((s) => place_stone(s.x, s.y, "H"));
   };
 
   // records the stone position in the goban array
@@ -99,16 +112,28 @@ const new_kifu = function (id = "") {
     return goban[x + y * 19];
   };
 
-  return { add_moves, draw_goban, draw_stone, draw_stones };
+  return {
+    add_moves,
+    add_premoves,
+    reset,
+    draw_goban,
+    draw_stone,
+    draw_stones,
+  };
 };
 
-const parser = sgf_parser(sgf);
-const game_moves = parser.get_moves().map(parser.convert_coordinates);
+function draw_game(sgf) {
+  const parser = sgf_parser(sgf);
+  const game_moves = parser.get_moves().map(parser.convert_coordinates);
+  const premoves = parser.get_pre_moves().map(parser.convert_coordinates);
 
-const kifu1 = new_kifu("kifu");
-let moves_at = "";
-kifu1.draw_goban();
-kifu1.add_moves(game_moves);
-moves_at = kifu1.draw_stones();
+  const kifu1 = new_kifu("kifu");
+  let moves_at = "";
+  kifu1.reset();
+  kifu1.draw_goban();
+  kifu1.add_moves(game_moves);
+  kifu1.add_premoves(premoves);
+  moves_at = kifu1.draw_stones();
 
-document.querySelector("#moves_at").textContent = moves_at;
+  document.querySelector("#moves_at").textContent = moves_at;
+}

@@ -4,35 +4,59 @@
 }
 
 :root {
+  --pal3: #944e63;
+  --pal2: #b47b84;
+  --pal1: #caa6a6;
+  --pal0: #ffe7e7;
   --gray: rgb(70, 70, 70);
-  --textcolor: #303030;
+  --textcolor: #1b1315;
   font-family: "open sans", sans-serif;
 }
 
 body {
-  background: bisque;
+  background: var(--pal0);
   width: 75%;
   max-width: 80ch;
   margin: auto;
+  color: #303030;
+  font-size: 12pt;
 }
 
 h1 {
   font-weight: 800;
+  color: var(--pal3);
 }
 
 svg {
   background: white;
-  border: 1pt solid gray;
+  border: 1pt solid var(--pal3);
+}
+
+label {
+  border: 1pt solid var(--pal3);
+  border-radius: 3pt;
+  background-color: inherit;
+  padding: 1pt 3pt;
+  color: #944e63;
+  font-size: 11pt;
+}
+
+label:hover {
+  background-color: var(--pal3);
+  color: var(--pal0);
 }
 
 #file_drop {
   text-align: center;
   padding: 3ch;
-  background: lightgrey;
+  background: var(--pal0);
+  border: 2pt dashed var(--pal3);
+  border-radius: 2ch;
 }
 
 #file_drop.active {
-  background: orange;
+  background: var(--pal2);
+  border: 2pt solid var(--pal3);
 }
 
 .goban_border {

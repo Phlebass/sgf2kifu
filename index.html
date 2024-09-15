@@ -14,10 +14,17 @@
   <body>
     <h1>Sgf2kifu</h1>
 
-    <div id="file_drop">Drag and drop your .sgf file here!</div>
+    <div id="file_drop">
+      Drop your .sgf file here or <label for="file_input">browse</label> for
+      one.
+    </div>
 
-    <p>Or use the thing here</p>
-    <input id="file_input" type="file" onchange="file_changed()" />
+    <input
+      id="file_input"
+      type="file"
+      style="display: none"
+      onchange="file_changed()"
+    />
 
     <p id="game_info"></p>
     <svg id="kifu" viewBox="0 0 200 200"></svg>

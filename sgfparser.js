@@ -4,23 +4,47 @@ const sgf_parser = function (sgf_str) {
   const str = sgf_str;
 
   const get_black_player = function () {
-    const regex = /PB\[([^\]]+)\]+/;
-    return str.match(regex)[1];
+    const regex_player = /PB\[([^\]]+)\]+/;
+    const regex_rank = /BR\[([^\]]+)\]+/;
+
+    let player_name = str.match(regex_player);
+    player_name = player_name == null ? "???" : player_name[1];
+
+    let player_rank = str.match(regex_rank);
+    player_rank = player_rank == null ? "" : "(" + player_rank[1] + ")";
+
+    return player_name + " " + player_rank;
   };
 
   const get_white_player = function () {
-    const regex = /PW\[([^\]]+)\]+/;
-    return str.match(regex)[1];
+    const regex_player = /PW\[([^\]]+)\]+/;
+    const regex_rank = /WR\[([^\]]+)\]+/;
+
+    let player_name = str.match(regex_player);
+    player_name = player_name == null ? "???" : player_name[1];
+
+    let player_rank = str.match(regex_rank);
+    player_rank = player_rank == null ? "" : "(" + player_rank[1] + ")";
+
+    return player_name + " " + player_rank;
   };
 
   const get_komi = function () {
     const regex = /KM\[([^\]]+)\]+/;
-    return str.match(regex)[1];
+    try {
+      return str.match(regex)[1];
+    } catch {
+      return "???";
+    }
   };
 
   const get_date = function () {
     const regex = /DT\[([^\]]+)\]+/;
-    return str.match(regex)[1];
+    try {
+      return str.match(regex)[1];
+    } catch {
+      return "???";
+    }
   };
 
   const get_moves = function () {

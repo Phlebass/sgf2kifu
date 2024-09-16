@@ -6,6 +6,7 @@ const svgns = "http://www.w3.org/2000/svg";
  */
 const new_kifu = function (id = "") {
   const svg = document.querySelector("#" + id);
+  svg.style.display = "block";
   let premoves = [];
   let moves = [];
 
@@ -127,6 +128,8 @@ function draw_game(sgf) {
   const game_moves = parser.get_moves().map(parser.convert_coordinates);
   const premoves = parser.get_pre_moves().map(parser.convert_coordinates);
 
+  const game_info_str = `Black: ${parser.get_black_player()} <br> White: ${parser.get_white_player()} <br> Date: ${parser.get_date()} <br> Komi: ${parser.get_komi()}`;
+
   const kifu1 = new_kifu("kifu");
   let moves_at = "";
   kifu1.reset();
@@ -136,4 +139,5 @@ function draw_game(sgf) {
   moves_at = kifu1.draw_stones();
 
   document.querySelector("#moves_at").textContent = moves_at;
+  document.querySelector("#game_info").innerHTML = game_info_str;
 }

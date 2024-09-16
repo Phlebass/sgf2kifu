@@ -4,12 +4,12 @@
 }
 
 :root {
-  --pal3: #944e63;
-  --pal2: #b47b84;
-  --pal1: #caa6a6;
-  --pal0: #ffe7e7;
+  --pal4: #1f070e;
+  --pal3: #6d3c4a;
+  --pal2: #af6b7f;
+  --pal1: #eccbd4;
+  --pal0: #ffeaea;
   --gray: rgb(70, 70, 70);
-  --textcolor: #1b1315;
   font-family: "open sans", sans-serif;
 }
 
@@ -18,7 +18,7 @@ body {
   width: 75%;
   max-width: 80ch;
   margin: auto;
-  color: #303030;
+  color: var(--pal4);
   font-size: 12pt;
 }
 
@@ -29,33 +29,28 @@ h1 {
 
 svg {
   background: white;
-  border: 1pt solid var(--pal3);
+  border: 1pt solid var(--pal2);
 }
 
 label {
-  border: 1pt solid var(--pal3);
-  border-radius: 3pt;
-  background-color: inherit;
-  padding: 1pt 3pt;
-  color: #944e63;
-  font-size: 11pt;
+  color: var(--pal3);
+  text-decoration: underline;
 }
 
 label:hover {
-  background-color: var(--pal3);
-  color: var(--pal0);
+  font-weight: 600;
 }
 
 #file_drop {
   text-align: center;
   padding: 3ch;
   background: var(--pal0);
-  border: 2pt dashed var(--pal3);
+  border: 2pt dashed var(--pal2);
   border-radius: 2ch;
 }
 
 #file_drop.active {
-  background: var(--pal2);
+  background: var(--pal1);
   border: 2pt solid var(--pal3);
 }
 

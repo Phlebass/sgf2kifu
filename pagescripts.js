@@ -1,4 +1,5 @@
 let sgf_str = "";
+
 function sgf_from_file(file) {
   let fr = new FileReader();
   fr.onload = function () {

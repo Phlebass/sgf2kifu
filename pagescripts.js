@@ -3,7 +3,7 @@ let sgf_str = "";
 function sgf_from_file(file) {
   let fr = new FileReader();
   fr.onload = function () {
-    console.log("File:", fr.result);
+    //console.log("File:", fr.result);
     draw_game(fr.result);
   };
 
@@ -12,7 +12,7 @@ function sgf_from_file(file) {
 
 // The file is dropped
 function dropHandler(ev) {
-  console.log("File(s) dropped");
+  //console.log("File(s) dropped");
 
   // Prevent default behavior (Prevent file from being opened)
   ev.preventDefault();
@@ -48,7 +48,6 @@ function stampa() {
 
 const file_drop = document.getElementById("file_drop");
 file_drop.addEventListener("dragenter", (ev) => {
-  console.log("Enter!");
   ev.preventDefault();
   ev.target.classList.add("active");
 });

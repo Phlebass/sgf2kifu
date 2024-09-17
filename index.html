@@ -13,26 +13,38 @@
     <link rel="icon" type="image/x-icon" href="icon.svg" />
   </head>
   <body>
-    <h1>sgf2kifu</h1>
+    <div id="page_content">
+      <h1>sgf2kifu</h1>
 
-    <div id="file_drop">
-      Drop your sgf file here or <label for="file_input">browse</label> for one
+      <div id="file_drop">
+        Drop your sgf file here or <label for="file_input">browse</label> for
+        one
+      </div>
+
+      <input
+        id="file_input"
+        type="file"
+        style="display: none"
+        onchange="file_changed()"
+      />
+
+      <p>
+        Click <a onclick="stampa()">here</a> to print the kifu (or save it as a
+        pdf).
+      </p>
+
+      <p id="game_info"></p>
+      <svg id="kifu" viewBox="0 0 200 200" style="display: none"></svg>
+      <p id="moves_at"></p>
     </div>
 
-    <input
-      id="file_input"
-      type="file"
-      style="display: none"
-      onchange="file_changed()"
-    />
-
-    <p>
-      Click <a onclick="stampa()">here</a> to print the kifu (or save it as a
-      pdf).
-    </p>
-
-    <p id="game_info"></p>
-    <svg id="kifu" viewBox="0 0 200 200" style="display: none"></svg>
-    <p id="moves_at"></p>
+    <footer>
+      <p>
+        Source:
+        <a href="https://github.com/Phlebass/sgf2kifu" target="_blank">
+          github
+        </a>
+      </p>
+    </footer>
   </body>
 </html>

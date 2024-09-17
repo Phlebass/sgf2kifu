@@ -21,15 +21,23 @@
   --pal0: #ffeaea;
   --gray: rgb(70, 70, 70);
   font-family: "open sans", sans-serif;
+  font-size: 12pt;
 }
 
 body {
   background: var(--pal0);
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#page_content {
   width: 75%;
   max-width: 80ch;
-  margin: auto;
+  margin: 0 auto;
   color: var(--pal4);
-  font-size: 12pt;
 }
 
 h1 {
@@ -74,6 +82,13 @@ a:hover {
 #file_drop.active {
   background: var(--pal1);
   border: 2pt solid var(--pal3);
+}
+
+footer {
+  background-color: var(--pal4);
+  color: var(--pal0);
+  text-align: center;
+  margin-top: auto;
 }
 
 /* Stuff for the print version */

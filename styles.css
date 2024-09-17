@@ -1,6 +1,16 @@
-@font-face {
+/* @font-face {
   font-family: "open sans";
   src: url("OpenSans-VariableFont_wdth,wght.woff2") format("woff2");
+} */
+
+@font-face {
+  font-family: "open sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 800;
+  font-stretch: 75% 100%;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/open-sans:vf@latest/latin-wdth-normal.woff2)
+    format("woff2-variations");
 }
 
 :root {
@@ -33,11 +43,23 @@ svg {
 }
 
 label {
-  color: var(--pal3);
+  color: inherit;
   text-decoration: underline;
 }
 
 label:hover {
+  font-weight: 600;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  border: none;
+  background-color: inherit;
+  font-size: inherit;
+}
+
+a:hover {
   font-weight: 600;
 }
 
@@ -53,6 +75,19 @@ label:hover {
   background: var(--pal1);
   border: 2pt solid var(--pal3);
 }
+
+/* Stuff for the print version */
+
+#foglio_stampa {
+  background: white;
+  color: black;
+}
+
+#foglio_stampa svg {
+  border: none;
+}
+
+/* Stuff for the kifu svg */
 
 .goban_border {
   stroke: black;

@@ -27,6 +27,25 @@ function file_changed() {
   sgf_from_file(file);
 }
 
+function stampa() {
+  const new_kifu = document.querySelector("#kifu").cloneNode(true);
+  const new_info = document.querySelector("#game_info").cloneNode(true);
+  const new_movesat = document.querySelector("#moves_at").cloneNode(true);
+
+  let print_window = window.open("", "", "height=400,width=800");
+  print_window.document.write(
+    '<html><head><title>Kifu</title><link rel="stylesheet" href="styles.css"></head><body id="foglio_stampa"><div ></div></body></html>'
+  );
+  print_window.document.querySelector("#foglio_stampa").appendChild(new_info);
+  print_window.document.querySelector("#foglio_stampa").appendChild(new_kifu);
+  print_window.document
+    .querySelector("#foglio_stampa")
+    .appendChild(new_movesat);
+
+  print_window.document.close();
+  print_window.print();
+}
+
 const file_drop = document.getElementById("file_drop");
 file_drop.addEventListener("dragenter", (ev) => {
   console.log("Enter!");

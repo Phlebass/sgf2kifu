@@ -128,7 +128,7 @@ function draw_game(sgf) {
   const game_moves = parser.get_moves().map(parser.convert_coordinates);
   const premoves = parser.get_pre_moves().map(parser.convert_coordinates);
 
-  const game_info_str = `Black: ${parser.get_black_player()} <br> White: ${parser.get_white_player()} <br> Date: ${parser.get_date()} <br> Komi: ${parser.get_komi()} <br> Result: ${parser.get_result()}`;
+  //const game_info_str = `Black: ${parser.get_black_player()} \r\n White: ${parser.get_white_player()} \n Date: ${parser.get_date()} \n Komi: ${parser.get_komi()} \n Result: ${parser.get_result()}`;
 
   const kifu1 = new_kifu("kifu");
   let moves_at = "";
@@ -139,5 +139,15 @@ function draw_game(sgf) {
   moves_at = kifu1.draw_stones();
 
   document.querySelector("#moves_at").textContent = moves_at;
-  document.querySelector("#game_info").innerHTML = game_info_str;
+  document.querySelector(
+    "#playerB"
+  ).textContent = `Black: ${parser.get_black_player()}`;
+  document.querySelector(
+    "#playerW"
+  ).textContent = `White: ${parser.get_white_player()}`;
+  document.querySelector("#date").textContent = `Date: ${parser.get_date()}`;
+  document.querySelector("#komi").textContent = `Komi: ${parser.get_komi()}`;
+  document.querySelector(
+    "#result"
+  ).textContent = `Result: ${parser.get_result()}`;
 }
